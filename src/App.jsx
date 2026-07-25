@@ -5,6 +5,7 @@ import RoseStage from './components/RoseStage';
 import GlowingOrbsStage from './components/GlowingOrbsStage';
 import ScratchCardStage from './components/ScratchCardStage';
 import Envelope from './components/Envelope';
+import FinalEndingStage from './components/FinalEndingStage';
 import BackgroundMusic from './components/BackgroundMusic';
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
         {stage === 1 && <RoseStage key="rose" onComplete={nextStage} />}
         {stage === 2 && <GlowingOrbsStage key="orbs" onComplete={nextStage} />}
         {stage === 3 && <ScratchCardStage key="scratch" onComplete={nextStage} />}
-        {stage === 4 && <Envelope key="envelope" />}
+        {stage === 4 && <Envelope key="envelope" onComplete={nextStage} />}
+        {stage === 5 && <FinalEndingStage key="ending" onReplay={() => setStage(0)} />}
       </AnimatePresence>
     </>
   );

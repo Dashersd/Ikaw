@@ -219,7 +219,7 @@ const renderFormattedText = (text) => {
   });
 };
 
-const Envelope = () => {
+const Envelope = ({ onComplete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const letterRef = useRef(null);
@@ -318,9 +318,43 @@ const Envelope = () => {
               )}
             </div>
 
-            <div style={{ marginTop: '2.5rem', marginBottom: '1.5rem', color: '#d81b60', fontSize: '2.5rem', textAlign: 'center' }}>
+            <div style={{ marginTop: '2rem', marginBottom: '1rem', color: '#d81b60', fontSize: '2.5rem', textAlign: 'center' }}>
               🤍
             </div>
+
+            {/* Next Stage Button */}
+            {displayedText.length >= fullText.length && (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                style={{ marginTop: '1.5rem', marginBottom: '2rem', textAlign: 'center' }}
+              >
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onComplete) onComplete();
+                  }}
+                  whileHover={{ scale: 1.05, boxShadow: '0 8px 20px rgba(89, 13, 34, 0.4)' }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    padding: '0.9rem 2rem',
+                    fontSize: '1.1rem',
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 500,
+                    background: 'linear-gradient(45deg, #590D22, #C5939A)',
+                    color: '#fff',
+                    borderRadius: '50px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 15px rgba(89, 13, 34, 0.3)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  Tingnan ang Huling Pahina 💫
+                </motion.button>
+              </motion.div>
+            )}
           </div>
         </div>
       </div>
