@@ -129,10 +129,14 @@
 }
 
 .envelope-wrapper.open .letter {
-  transform: translateY(30px);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: auto;
   width: min(92vw, 440px);
-  height: min(72vh, 540px);
-  z-index: 6; /* Ensure it's above everything including the wax seal */
+  height: min(75vh, 560px);
+  z-index: 99; /* Ensure it's above everything including the wax seal */
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
   border-radius: 8px;
   padding: 25px 18px;
@@ -140,9 +144,8 @@
 
 @media (max-width: 600px) {
   .envelope-wrapper.open .letter {
-    transform: translateY(15px);
-    width: 92vw;
-    height: 72vh;
+    width: 90vw;
+    height: 75vh;
     padding: 20px 14px;
   }
 }

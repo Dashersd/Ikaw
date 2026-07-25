@@ -284,7 +284,13 @@ const Envelope = ({ onComplete }) => {
         backgroundColor: 'var(--bg-primary)'
       }}
     >
-      <h2 style={{ marginBottom: '3rem', fontFamily: 'Playfair Display', color: 'var(--text-main)', textAlign: 'center' }}>
+      <h2 style={{ 
+        marginBottom: isOpen ? '1rem' : '3rem', 
+        fontFamily: 'Playfair Display', 
+        color: 'var(--text-main)', 
+        textAlign: 'center',
+        transition: 'all 0.5s ease'
+      }}>
         {isOpen ? "Isang mensahe para sa 'yo..." : "I-tap para buksan"}
       </h2>
 
