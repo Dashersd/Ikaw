@@ -1,0 +1,160 @@
+.envelope-wrapper {
+  position: relative;
+  width: 350px;
+  height: 230px;
+  background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  perspective: 1500px;
+}
+
+/* Inside of the envelope (darker to show depth) */
+.envelope-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, #d81b60 0%, #ad1457 100%);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  background: linear-gradient(to bottom, #f8bbd0, #f48fb1);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 4;
+  transform-origin: top center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Use a wrapper for drop-shadow if this fails, but usually works */
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+}
+
+.envelope-wrapper.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1; /* Goes behind the letter once fully open */
+}
+
+.wax-seal {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 45%);
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle at 30% 30%, #ff1744, #b71c1c);
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3), inset 0 0 10px rgba(0,0,0,0.5);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s;
+}
+
+.wax-seal::after {
+  content: "♥";
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.7);
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+}
+
+.envelope-wrapper.open .wax-seal {
+  opacity: 0;
+}
+
+.envelope-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+  clip-path: polygon(0 100%, 0 0, 50% 65%, 100% 0, 100% 100%);
+  background: linear-gradient(180deg, #f48fb1 0%, #f06292 100%);
+}
+
+.envelope-front::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top right, rgba(255,255,255,0.3) 0%, transparent 40%);
+}
+
+.envelope-front::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top left, rgba(0,0,0,0.1) 0%, transparent 40%);
+}
+
+.letter {
+  position: absolute;
+  bottom: 10px;
+  width: 310px;
+  height: 210px;
+  background: #fffdf9; /* Creamy paper */
+  /* Subtle lines to simulate lined paper */
+  background-image: repeating-linear-gradient(transparent, transparent 29px, #e8e0d5 30px);
+  border-radius: 5px;
+  padding: 30px 20px 20px 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  z-index: 2;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for the letter */
+.letter::-webkit-scrollbar {
+  width: 6px;
+}
+.letter::-webkit-scrollbar-track {
+  background: transparent;
+}
+.letter::-webkit-scrollbar-thumb {
+  background: rgba(89, 13, 34, 0.3);
+  border-radius: 3px;
+}
+
+.envelope-wrapper.open .letter {
+  transform: translateY(40px);
+  width: min(90vw, 420px);
+  height: min(70vh, 520px);
+  z-index: 6; /* Ensure it's above everything including the wax seal */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  border-radius: 8px;
+}
+
+.letter-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  transition-delay: 0.7s; 
+}
+
+.envelope-wrapper.open .letter-content {
+  opacity: 1;
+}
+
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
