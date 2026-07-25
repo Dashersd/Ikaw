@@ -186,18 +186,24 @@ const GlowingOrbsStage = ({ onComplete }) => {
               position: 'absolute',
               top: '50%',
               left: '50%',
-              backgroundColor: 'rgba(11, 16, 33, 0.7)',
-              padding: '2rem 3rem',
-              borderRadius: '15px',
-              border: '1px solid rgba(255,255,255,0.2)',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+              backgroundColor: 'rgba(11, 16, 33, 0.85)',
+              padding: '1.5rem 1.8rem',
+              borderRadius: '20px',
+              border: '1px solid rgba(255,255,255,0.25)',
+              boxShadow: '0 15px 35px rgba(0,0,0,0.6)',
               textAlign: 'center',
-              maxWidth: '80%',
-              backdropFilter: 'blur(10px)',
+              width: 'min(90vw, 480px)',
+              backdropFilter: 'blur(12px)',
               zIndex: 30
             }}
           >
-            <h3 style={{ fontFamily: 'Playfair Display', fontSize: '1.8rem', color: '#fff', margin: 0 }}>
+            <h3 style={{ 
+              fontFamily: 'Playfair Display', 
+              fontSize: 'clamp(1.2rem, 4.5vw, 1.7rem)', 
+              lineHeight: '1.5',
+              color: '#fff', 
+              margin: 0 
+            }}>
               {currentReason}
             </h3>
           </motion.div>
