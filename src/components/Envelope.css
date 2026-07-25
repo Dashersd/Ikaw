@@ -1,7 +1,7 @@
 .envelope-wrapper {
   position: relative;
-  width: 350px;
-  height: 230px;
+  width: min(88vw, 350px);
+  height: 220px;
   background: linear-gradient(135deg, #fce4ec, #f8bbd0);
   border-radius: 10px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
@@ -99,13 +99,12 @@
 .letter {
   position: absolute;
   bottom: 10px;
-  width: 310px;
-  height: 210px;
+  width: min(82vw, 310px);
+  height: 195px;
   background: #fffdf9; /* Creamy paper */
-  /* Subtle lines to simulate lined paper */
   background-image: repeating-linear-gradient(transparent, transparent 29px, #e8e0d5 30px);
   border-radius: 5px;
-  padding: 30px 20px 20px 20px;
+  padding: 25px 18px 18px 18px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   z-index: 2;
   transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -130,12 +129,22 @@
 }
 
 .envelope-wrapper.open .letter {
-  transform: translateY(40px);
-  width: min(90vw, 420px);
-  height: min(70vh, 520px);
+  transform: translateY(30px);
+  width: min(92vw, 440px);
+  height: min(72vh, 540px);
   z-index: 6; /* Ensure it's above everything including the wax seal */
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
   border-radius: 8px;
+  padding: 25px 18px;
+}
+
+@media (max-width: 600px) {
+  .envelope-wrapper.open .letter {
+    transform: translateY(15px);
+    width: 92vw;
+    height: 72vh;
+    padding: 20px 14px;
+  }
 }
 
 .letter-content {
